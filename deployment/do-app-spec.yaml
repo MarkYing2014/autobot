@@ -1,0 +1,32 @@
+name: trading-bot
+region: sfo
+services:
+- name: trading-bot-api
+  github:
+    repo: your-username/trading-bot-drl
+    branch: main
+    deploy_on_push: true
+  source_dir: backend
+  dockerfile_path: docker/backend/Dockerfile
+  http_port: 8000
+  instance_count: 1
+  instance_size_slug: basic-xs
+  routes:
+  - path: /api
+  envs:
+  - key: DATABASE_URL
+    value: ${db.DATABASE_URL}
+    type: SECRET
+  - key: SECRET_KEY
+    type: SECRET
+    value: ""
+  - key: ALPHA_VANTAGE_API_KEY
+    type: SECRET
+    value: ""
+
+databases:
+- engine: PG
+  name: trading-bot-db
+  num_nodes: 1
+  size: db-s-dev-database
+  version: "14"
