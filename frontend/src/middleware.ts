@@ -6,19 +6,19 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Public paths that don't require authentication
-  const publicPaths = ['/auth/signin', '/auth/signup', '/'];
+  const publicPaths = ['/auth/signup', '/'];
   
   // Check if the path is public
   const isPublicPath = publicPaths.some(path => pathname.startsWith(path));
 
-  // Redirect unauthenticated users to signin
+  // Redirect unauthenticated users to signup
   if (!token && !isPublicPath) {
-    const signInUrl = new URL('/auth/signin', request.url);
-    return NextResponse.redirect(signInUrl);
+    const signUpUrl = new URL('/auth/signup', request.url);
+    return NextResponse.redirect(signUpUrl);
   }
 
-  // Redirect authenticated users away from auth pages
-  if (token && isPublicPath && pathname !== '/') {
+  // Redirect authenticated users to dashboard
+  if (token && pathname.startsWith('/auth')) {
     const dashboardUrl = new URL('/dashboard', request.url);
     return NextResponse.redirect(dashboardUrl);
   }

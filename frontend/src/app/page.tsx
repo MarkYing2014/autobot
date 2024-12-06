@@ -1,92 +1,94 @@
-'use client';
-
 import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center">
-          <h1 className="text-5xl font-bold mb-6">
-            AI-Powered Trading Bot
-          </h1>
-          <p className="text-xl mb-8">
-            Leverage Deep Reinforcement Learning for automated trading strategies
-          </p>
-          
-          <div className="flex justify-center space-x-4">
-            <Link
-              href="/auth/signin"
-              className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/auth/signup"
-              className="bg-transparent border-2 border-indigo-600 hover:bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
-            >
-              Create Account
-            </Link>
-          </div>
-        </div>
+    <main className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+      {/* Hero Section */}
+      <section className="container mx-auto px-6 py-16 text-center">
+        <h1 className="mb-4 text-5xl font-bold">AI-Powered Trading Bot</h1>
+        <p className="mb-8 text-xl text-gray-300">
+          Leverage Deep Reinforcement Learning for smarter trading decisions
+        </p>
+        <Link
+          href="/auth/signup"
+          className="rounded-full bg-blue-600 px-8 py-3 text-lg font-semibold text-white hover:bg-blue-700"
+        >
+          Get Started
+        </Link>
+      </section>
 
-        {/* Features Section */}
-        <div className="grid md:grid-cols-3 gap-8 mt-16">
-          <div className="bg-gray-800 p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-4">Advanced AI Trading</h3>
-            <p className="text-gray-300">
-              Utilize state-of-the-art Deep Reinforcement Learning algorithms for optimal trading decisions
-            </p>
-          </div>
-          <div className="bg-gray-800 p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-4">Real-time Analytics</h3>
-            <p className="text-gray-300">
-              Monitor your portfolio performance with real-time data and advanced analytics
-            </p>
-          </div>
-          <div className="bg-gray-800 p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-4">Risk Management</h3>
-            <p className="text-gray-300">
-              Smart risk management strategies to protect your investments
-            </p>
+      {/* Features Section */}
+      <section className="bg-gray-800 py-16">
+        <div className="container mx-auto px-6">
+          <h2 className="mb-12 text-center text-4xl font-bold">Key Features</h2>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <FeatureCard
+              title="AI-Driven Strategy"
+              description="Advanced Deep Reinforcement Learning algorithms for optimal trading decisions"
+              icon="🤖"
+            />
+            <FeatureCard
+              title="Real-time Analytics"
+              description="Live market data and portfolio performance tracking"
+              icon="📊"
+            />
+            <FeatureCard
+              title="Risk Management"
+              description="Automated position sizing and stop-loss management"
+              icon="🛡️"
+            />
           </div>
         </div>
+      </section>
 
-        {/* How It Works Section */}
-        <div className="mt-16">
-          <h2 className="text-3xl font-bold text-center mb-8">How It Works</h2>
-          <div className="grid md:grid-cols-4 gap-4">
-            <div className="text-center">
-              <div className="bg-indigo-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                1
-              </div>
-              <h4 className="font-bold mb-2">Create Account</h4>
-              <p className="text-gray-300">Sign up and complete verification</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-indigo-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                2
-              </div>
-              <h4 className="font-bold mb-2">Configure Bot</h4>
-              <p className="text-gray-300">Set your trading preferences</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-indigo-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                3
-              </div>
-              <h4 className="font-bold mb-2">Connect API</h4>
-              <p className="text-gray-300">Link your trading account</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-indigo-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                4
-              </div>
-              <h4 className="font-bold mb-2">Start Trading</h4>
-              <p className="text-gray-300">Let AI handle your trades</p>
-            </div>
-          </div>
+      {/* How It Works Section */}
+      <section className="container mx-auto px-6 py-16">
+        <h2 className="mb-12 text-center text-4xl font-bold">How It Works</h2>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <StepCard
+            number="1"
+            title="Create Account"
+            description="Sign up and configure your trading preferences"
+          />
+          <StepCard
+            number="2"
+            title="Connect API"
+            description="Link your trading account via secure API"
+          />
+          <StepCard
+            number="3"
+            title="Set Strategy"
+            description="Choose your risk level and trading strategy"
+          />
+          <StepCard
+            number="4"
+            title="Start Trading"
+            description="Let the AI bot execute trades automatically"
+          />
         </div>
+      </section>
+    </main>
+  );
+}
+
+function FeatureCard({ title, description, icon }: { title: string; description: string; icon: string }) {
+  return (
+    <div className="rounded-lg bg-gray-700 p-6 text-center">
+      <div className="mb-4 text-4xl">{icon}</div>
+      <h3 className="mb-2 text-xl font-semibold">{title}</h3>
+      <p className="text-gray-300">{description}</p>
+    </div>
+  );
+}
+
+function StepCard({ number, title, description }: { number: string; title: string; description: string }) {
+  return (
+    <div className="rounded-lg bg-gray-700 p-6">
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-xl font-bold">
+        {number}
       </div>
+      <h3 className="mb-2 text-xl font-semibold">{title}</h3>
+      <p className="text-gray-300">{description}</p>
     </div>
   );
 }
